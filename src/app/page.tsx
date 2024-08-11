@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { Search } from '@/components/Search'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 export default function Home() {
@@ -9,6 +10,8 @@ export default function Home() {
         <Image src={'./logo.svg'} width={32} height={32} alt="logo" />
         <ThemeSwitcher />
       </header>
+      <Search />
+      <main></main>
     </div>
   )
 }
