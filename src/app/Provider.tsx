@@ -7,5 +7,5 @@ type Props = {
 }
 
 export const Provider = ({ children }: Props) => {
-  return <ThemeProvider>{children}</ThemeProvider>
+  return <ThemeProvider attribute="class">{children}</ThemeProvider>
 }
