@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --clr-primary: hsl(98, 29%, 63%);
+  --clr-accent: hsla(98, 29%, 63%, 0.3);
+
+  --fs-body: clamp(1rem, 1rem + 0vw, 1rem);
+  --fs-input: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+  --fs-title: clamp(2.625rem, 2.3207rem + 1.5217vw, 3.5rem);
+  --fs-sub-title: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+  --fs-sub-heading: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+  --fs-link: clamp(0.875rem, 0.8315rem + 0.2174vw, 1rem);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100vmax;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-primary);
+  border-radius: 100vmax;
+}
