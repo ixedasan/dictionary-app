@@ -18,7 +18,7 @@ export const Search = ({ value, onChange, onSubmit }: Props) => {
           value={value}
           onChange={onChange}
         />
-        <IoSearch className="text-gray-500 dark:text-gray-400" size={20} />
+        <IoSearch className="text-primary" size={24} />
       </label>
     </form>
   )
