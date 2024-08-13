@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { GrHelpBook } from 'react-icons/gr'
-import { IoIosPlay } from 'react-icons/io'
+import { IoIosPause, IoIosPlay } from 'react-icons/io'
 
 import { Error } from '@/components/Error'
 import { Meaning } from '@/components/Meaning'
@@ -16,6 +16,7 @@ import WordData, { ErrorResponse } from './type'
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState('')
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const api = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`
 
@@ -39,13 +40,42 @@ export default function Home() {
     }
   }
 
-  const speechHandler = () => {
+  const fallbackToSpeechSynthesis = () => {
     if ('speechSynthesis' in window) {
-      const msg = new SpeechSynthesisUtterance()
-      msg.text = data?.word ?? ''
+      const msg = new SpeechSynthesisUtterance(data?.word ?? '')
       window.speechSynthesis.speak(msg)
     } else {
       console.error('Speech synthesis not supported in this browser.')
+    }
+  }
+
+  const speechHandler = () => {
+    if (data?.phonetics && data.phonetics.length > 0) {
+      const audioSrc = data.phonetics.find(p => p.audio)?.audio
+      if (audioSrc) {
+        const audio = new Audio(audioSrc)
+        if (!isPlaying) {
+          audio
+            .play()
+            .then(() => {
+              setIsPlaying(true)
+            })
+            .catch(error => {
+              console.error('Failed to play audio:', error)
+              fallbackToSpeechSynthesis()
+            })
+        } else {
+          audio.pause()
+          setIsPlaying(false)
+        }
+        audio.onended = () => {
+          setIsPlaying(false)
+        }
+      } else {
+        fallbackToSpeechSynthesis()
+      }
+    } else {
+      fallbackToSpeechSynthesis()
     }
   }
 
@@ -76,7 +106,17 @@ export default function Home() {
                 onClick={speechHandler}
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-accent md:h-16 md:w-16"
               >
-                <IoIosPlay className="ml-1 text-3xl text-primary md:text-5xl" />
+                {isPlaying ? (
+                  <IoIosPause
+                    className="text-3xl text-primary md:text-5xl"
+                    id="play-icon"
+                  />
+                ) : (
+                  <IoIosPlay
+                    className="ml-1 text-3xl text-primary md:text-5xl"
+                    id="play-icon"
+                  />
+                )}
               </button>
             </section>
             {data?.meanings.map((meaning, index) => (
