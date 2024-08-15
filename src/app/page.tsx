@@ -27,8 +27,14 @@ export default function Home() {
     refetch,
     data: wordData,
   } = useQuery<WordData[], ErrorResponse>({
-    queryKey: ['wordData', searchValue],
-    queryFn: () => fetch(api).then(res => res.json()),
+    queryKey: ['wordData'],
+    queryFn: () =>
+      fetch(api).then(res => {
+        if (!res.ok) {
+          throw new Error('Error fetching data')
+        }
+        return res.json()
+      }),
     enabled: false,
   })
 
@@ -92,11 +98,11 @@ export default function Home() {
           onSubmit={handleSubmit}
           onChange={e => setSearchValue(e.target.value)}
         />
-        {!searchValue ? (
-          <Instructions />
-        ) : !data ? (
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : error ? (
           <Error />
-        ) : (
+        ) : data ? (
           <>
             <section className="mb-5 flex items-center justify-between">
               <div>
@@ -147,6 +153,8 @@ export default function Home() {
               </div>
             )}
           </>
+        ) : (
+          <Instructions />
         )}
       </main>
     </div>
