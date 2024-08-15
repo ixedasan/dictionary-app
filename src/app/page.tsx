@@ -14,6 +14,7 @@ import { Search } from '@/components/Search'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 import WordData, { ErrorResponse } from './type'
+import { Loading } from "@/components/Loading"
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState('')
@@ -99,7 +100,7 @@ export default function Home() {
           onChange={e => setSearchValue(e.target.value)}
         />
         {isLoading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
           <Error />
         ) : data ? (
