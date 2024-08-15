@@ -8,6 +8,7 @@ import { GrHelpBook } from 'react-icons/gr'
 import { IoIosPause, IoIosPlay } from 'react-icons/io'
 
 import { Error } from '@/components/Error'
+import { Instructions } from '@/components/Instructions'
 import { Meaning } from '@/components/Meaning'
 import { Search } from '@/components/Search'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
@@ -91,7 +92,9 @@ export default function Home() {
           onSubmit={handleSubmit}
           onChange={e => setSearchValue(e.target.value)}
         />
-        {!data ? (
+        {!searchValue ? (
+          <Instructions />
+        ) : !data ? (
           <Error />
         ) : (
           <>
