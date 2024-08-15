@@ -1,18 +1,20 @@
-import WordData from "@/app/type"
-import Link from "next/link"
-import { FaExternalLinkAlt } from "react-icons/fa"
-import { Meaning } from "./Meaning"
-import { IoIosPause, IoIosPlay } from "react-icons/io"
+import Link from 'next/link'
+import { FaExternalLinkAlt } from 'react-icons/fa'
+import { IoIosPause, IoIosPlay } from 'react-icons/io'
+
+import WordData from '@/app/type'
+
+import { Meaning } from './Meaning'
 
 type Props = {
-	data: WordData
+  data: WordData
   isPlaying: boolean
   speechHandler: () => void
 }
 
 export const Main = ({ data, isPlaying, speechHandler }: Props) => {
-	return (
-		<>
+  return (
+    <>
       <section className="mb-5 flex items-center justify-between">
         <div>
           <h1 className="text-fs-title capitalize">{data.word}</h1>
@@ -62,5 +64,5 @@ export const Main = ({ data, isPlaying, speechHandler }: Props) => {
         </div>
       )}
     </>
-	)
+  )
 }
