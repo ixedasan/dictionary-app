@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
+import { FaHeart } from 'react-icons/fa'
 import { GrHelpBook } from 'react-icons/gr'
 
 import { Error } from '@/components/Error'
@@ -85,12 +87,12 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-10 p-6">
-      <header className="flex w-full justify-between">
+    <div className="mx-auto flex min-h-screen max-w-5xl flex-col justify-between p-6">
+      <header className="flex w-full justify-between pb-6 pt-8 md:pt-10">
         <GrHelpBook size={32} className="text-primary" />
         <ThemeSwitcher />
       </header>
-      <main>
+      <main className="flex-grow">
         <Search
           value={searchValue}
           onSubmit={handleSubmit}
@@ -110,6 +112,19 @@ export default function Home() {
           <Instructions />
         )}
       </main>
+      <footer>
+        <p className="py-8 text-center text-gray-500">
+          Made with{' '}
+          <FaHeart className="inline-block align-middle text-primary" /> by{' '}
+          <Link
+            href="https://github.com/ixedasan"
+            target="_blank"
+            className="text-fs-sub-title text-primary"
+          >
+            ixedasan
+          </Link>
+        </p>
+      </footer>
     </div>
   )
 }
