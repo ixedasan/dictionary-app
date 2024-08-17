@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --clr-primary: hsl(98, 29%, 63%);
-  --clr-accent: hsla(98, 29%, 63%, 0.3);
+  --clr-primary: hsl(30, 34%, 58%);
+  --clr-accent: hsla(30, 34%, 58%, 0.5);
+
+  --clr-light-theme-body: hsl(0, 0%, 100%);
+  --clr-dark-theme-body: hsl(210, 30%, 10%);
 
   --fs-body: clamp(1rem, 1rem + 0vw, 1rem);
   --fs-input: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
@@ -26,4 +29,8 @@
 ::-webkit-scrollbar-thumb {
   background: var(--clr-primary);
   border-radius: 100vmax;
+}
+
+body {
+  @apply bg-light_theme_body text-fs-body dark:bg-dark_theme_body;
 }

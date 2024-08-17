@@ -55,10 +55,10 @@ export const Main = ({ data, isPlaying, speechHandler }: Props) => {
             <Link
               target="_blank"
               href={data.sourceUrls[0]}
-              className="flex flex-wrap items-center text-fs-link text-gray-400 underline"
+              className="ml-4 flex flex-wrap items-center text-fs-link text-gray-400 underline"
             >
               <span> {data.sourceUrls}</span>
-              <FaExternalLinkAlt className="text-sm" />
+              <FaExternalLinkAlt className="ml-1 text-sm" />
             </Link>
           </div>
         </div>

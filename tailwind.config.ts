@@ -12,6 +12,8 @@ const config: Config = {
       colors: {
         primary: 'var(--clr-primary)',
         accent: 'var(--clr-accent)',
+        light_theme_body: 'var(--clr-light-theme-body)',
+        dark_theme_body: 'var(--clr-dark-theme-body)',
       },
       fontSize: {
         'fs-body': [

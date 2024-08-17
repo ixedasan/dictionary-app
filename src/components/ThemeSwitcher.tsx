@@ -1,6 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
+import { LuMoon, LuSun } from 'react-icons/lu'
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme()
@@ -17,10 +18,10 @@ export const ThemeSwitcher = () => {
       {theme && (
         <>
           <div
-            className={`absolute h-4 w-4 transform rounded-full bg-white shadow-md transition-transform duration-300 ease-in-out ${theme === 'dark' ? 'translate-x-6' : 'translate-x-0'}`}
+            className={`absolute h-4 w-4 transform rounded-full bg-white text-xs shadow-md transition-transform duration-300 ease-in-out ${theme === 'dark' ? 'translate-x-6' : 'translate-x-0'}`}
           />
-          <span className="text-xs">☀️</span>
-          <span className="text-xs">🌙</span>
+          <LuSun />
+          <LuMoon />
         </>
       )}
     </button>

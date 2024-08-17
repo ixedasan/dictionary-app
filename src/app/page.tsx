@@ -114,8 +114,7 @@ export default function Home() {
       </main>
       <footer>
         <p className="py-8 text-center text-gray-500">
-          Made with{' '}
-          <FaHeart className="inline-block align-middle text-primary" /> by{' '}
+          Made with <FaHeart className="mb-1 inline-block text-primary" /> by{' '}
           <Link
             href="https://github.com/ixedasan"
             target="_blank"
