@@ -28,13 +28,14 @@ export default function Home() {
     data: wordData,
   } = useQuery<WordData[], ErrorResponse>({
     queryKey: ['wordData'],
-    queryFn: () =>
-      fetch(api).then(res => {
-        if (!res.ok) {
-          console.error('Error fetching data')
-        }
-        return res.json()
-      }),
+    queryFn: async () => {
+      const response = await fetch(api)
+      if (!response.ok) {
+        const errorData: ErrorResponse = await response.json()
+        return Promise.reject(errorData)
+      }
+      return response.json()
+    },
     enabled: false,
   })
 
