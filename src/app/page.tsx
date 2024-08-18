@@ -31,7 +31,7 @@ export default function Home() {
     queryFn: () =>
       fetch(api).then(res => {
         if (!res.ok) {
-          throw new Error('Error fetching data')
+          console.error('Error fetching data')
         }
         return res.json()
       }),
